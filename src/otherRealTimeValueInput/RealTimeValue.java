@@ -6,5 +6,10 @@ public interface RealTimeValue {
 
     Optional<Character> upd();
 
-    boolean isCorrectlyFormed();
+    boolean isCorrectlyFormed(String s);
+
+    void setValue(String s);
+    
+    @Override
+    String toString();
 }

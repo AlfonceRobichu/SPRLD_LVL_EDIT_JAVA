@@ -6,7 +6,7 @@ import com.raylib.java.shapes.Rectangle;
 import src.Input;
 import src.RayClass;
 
-public abstract class SelectionCascade {
+public abstract class SelectionCascade extends GUIelement {
     protected static int textSize = 20;
     protected static int width = 300;
     protected static int height = 30;

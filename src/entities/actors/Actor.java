@@ -32,8 +32,6 @@ public abstract class Actor {
 
     public static String acteurSelOptions[] = init_acteurSelOptions();
             
-    
-    
 
     private Actor(float x, float y){
         id = 0;
@@ -78,7 +76,7 @@ public abstract class Actor {
     }
 
 
-    public static String[] init_acteurSelOptions(){
+    private static String[] init_acteurSelOptions(){
         String[] res = new String[ACTR_TYPE_NB];
         for(int i = 0; i < res.length; i++) res[i] = "unused";
 

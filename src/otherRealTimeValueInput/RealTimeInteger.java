@@ -7,6 +7,14 @@ import src.RayClass;
 public class RealTimeInteger implements RealTimeValue{
     private Integer value;
 
+    public RealTimeInteger(){
+        value = 0;
+    }
+    
+    public RealTimeInteger(int value){
+        this.value = value;
+    }
+
 
     public Optional<Character> upd(){
         int keyChar = RayClass.rlj.core.GetCharPressed();
@@ -23,9 +31,18 @@ public class RealTimeInteger implements RealTimeValue{
 
 
     @Override
-    public boolean isCorrectlyFormed() {
+    public boolean isCorrectlyFormed(String s) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isCorrectlyFormed'");
+        return s.matches("(-)?[0-9]+");
+    }
+    
+    @Override
+    public void setValue(String s){
+        value = Integer.parseInt(s);
     }
 
+    @Override
+    public String toString(){
+        return "" + value; 
+    }
 }

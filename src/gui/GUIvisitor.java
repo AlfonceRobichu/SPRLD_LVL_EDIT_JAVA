@@ -6,4 +6,5 @@ public interface GUIvisitor {
 
     void visit(SelectionCascade selectionCascade);
 
+
 }

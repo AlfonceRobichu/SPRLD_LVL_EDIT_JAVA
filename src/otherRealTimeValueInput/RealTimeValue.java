@@ -2,14 +2,23 @@ package src.otherRealTimeValueInput;
 
 import java.util.Optional;
 
-public interface RealTimeValue {
+public abstract class RealTimeValue {
 
-    Optional<Character> upd();
+    private final String name;
 
-    boolean isCorrectlyFormed(String s);
+    protected RealTimeValue(String name){
+        this.name = name;
+    }
 
-    void setValue(String s);
+    public String getName(){
+        return name;
+    }
+
+    public abstract Optional<Character> upd();
+
+    public abstract boolean isCorrectlyFormed(String s);
+
+    public abstract void setValue(String s);
     
-    @Override
-    String toString();
+    public abstract String toString();
 }

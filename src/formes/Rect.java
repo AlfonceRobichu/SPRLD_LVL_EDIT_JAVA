@@ -90,7 +90,7 @@ public class Rect {
 
     }
 
-    public static Rect setRect(Vector2 pos, int rot, int width, int height){
+    public static Rect createRectFromRot(Vector2 pos, int rot, int width, int height){
         Rect rect = new Rect(pos, width, height);
         if(rot == 90 || rot == -90)  rect.swapDimensions();    //dimensions du rect selon la rotation
 

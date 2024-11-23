@@ -1,6 +1,8 @@
 package src.entities.actors;
 
 
+import java.util.List;
+
 import com.raylib.java.core.Color;
 import com.raylib.java.raymath.Vector2;
 import com.raylib.java.shapes.Rectangle;
@@ -11,6 +13,7 @@ import src.Input;
 import src.RayClass;
 import src.TxtrStrg;
 import src.formes.Rect;
+import src.otherRealTimeValueInput.RealTimeValue;
 
 public abstract class Actor {
     protected int id;
@@ -39,10 +42,11 @@ public abstract class Actor {
         lookRight = true;
     }
 
-    public Actor(int id, Vector2 pos, int rot){
+    public Actor(int id, Vector2 pos, int rot, int width, int height){
         this.id = id;
         ogRot = rot;
         lookRight = true;
+        rect = Rect.createRectFromRot(pos, rot, width, height);
     }
 
     public static Actor create(int id, Vector2 pos, int rot){
@@ -72,7 +76,7 @@ public abstract class Actor {
 
 
     public boolean isCursorIn(){
-        return rect.isVectorInRect(Input.getCursorPosCam()); //&& rectr.gjk_with_point(Input.getCursorPosCam());
+        return rect.isVectorInRect(Input.getCursorPosCam());
     }
 
 
@@ -115,11 +119,17 @@ public abstract class Actor {
         //rectr.draw(Color.RED);
     }
 
-    public void updInfo(){
-        
+
+    public abstract List<RealTimeValue> getOptions();
+
+    protected List<RealTimeValue> getAbstractOptions(){
+        return List.of();
     }
+
     
-    protected int displayInfo(String name){
+    public abstract void displayInfo(); //TODO : OBSOLETE
+
+    protected int displayInfo(String name){ //TODO : OBSOLETE
         RayClass.rlj.text.DrawText(name, x, y, textSize, Color.WHITE);
         int offset = y + optionsOffset;
 
@@ -132,7 +142,7 @@ public abstract class Actor {
     }
 
 
-    public abstract void displayInfo();
+    
     
     public String writeToFile(){
         int lookRightInt = lookRight  ? 1 : 0;

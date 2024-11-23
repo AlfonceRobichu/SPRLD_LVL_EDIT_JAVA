@@ -1,7 +1,7 @@
 package src.gui;
 
 
-import java.util.Optional;
+import java.util.ArrayList;
 
 import com.raylib.java.core.Color;
 import com.raylib.java.shapes.Rectangle;
@@ -11,12 +11,10 @@ import src.Input;
 import src.RayClass;
 import src.Screen;
 import src.TxtrStrg;
-import src.entities.LvlEle;
 import src.selectionTile.SelectionTileColl;
 import src.selectionTile.SelectionTileGraphic;
 
 public class GUI {
-
     public static final int 
     MODE_EDIT_ACTEUR = 0, 
     MODE_EDIT_TILEGRAPHIQUE = 1,
@@ -25,11 +23,11 @@ public class GUI {
     private static boolean mousePressedinGUI;
     public static Rectangle bgRect = new Rectangle(0, 0, 300, Screen.fullscreenHeight);
     public static SelectionCascadeEntite entitySel;
-    public static SelectionCascadeFichier actionfichierSel;
+    public static SelectionCascadeAction actionfichierSel;
     public static SelectionCascadeEntite acteurSel;
     public static SelectionTileGraphic tileGraphicSel;
     public static SelectionTileColl tileCollSel;
-    public static SelectionCascadeEntite currMusic;// = new ReglageUnique("Musique", 60);
+    public static SelectionCascadeEntite currMusic;
     public static SelectionCascadeEntite currBg;
     public static SelectionCascadeEntite currFg;
     public static int currLayer = 1;
@@ -37,22 +35,19 @@ public class GUI {
     public static final int DRAW_OPAQUE = 0, DRAW_TRANSPARENT = 1;
     public static int drawOtherEntities = DRAW_OPAQUE;
     public static boolean placement_libre = true;
-
-    
-
-    
+    public static ActorEditableOptions actorEditableOptions;
 
     public GUI(){
         tileGraphicSel = new SelectionTileGraphic();
         tileCollSel = new SelectionTileColl();
         currMusic = SelectionCascadeEntite.selectionCascadeMusique();
-        actionfichierSel = new SelectionCascadeFichier();
+        actionfichierSel = SelectionCascadeAction.fichiersAction();
         
         entitySel = SelectionCascadeEntite.selectionCascadeEntites();
         acteurSel = SelectionCascadeEntite.selectionCascadeActeurs();
         currBg = SelectionCascadeEntite.selectionCascadeArrierePlan();
         currFg = SelectionCascadeEntite.selectionCascadeAvantPlan();
-        
+        actorEditableOptions = new ActorEditableOptions(new ArrayList<>());
     }
 
     public static void resetReglages(){
@@ -81,8 +76,7 @@ public class GUI {
         switch(entitySel.getOptionSelected()){
             case MODE_EDIT_ACTEUR           : {
                 acteurSel.upd();         
-                LvlEle.getActorSelected().ifPresent( (actor) -> actor.updInfo() );
-                
+                actorEditableOptions.upd();
             }break;
             case MODE_EDIT_TILEGRAPHIQUE    : tileGraphicSel.upd(); break;
             case MODE_EDIT_TILECOLLISION    : tileCollSel.upd();    break;
@@ -133,8 +127,8 @@ public class GUI {
         RayClass.rlj.text.DrawText("placement_libre : " + placement_libre, 900, 0, 20, Color.WHITE);
         switch(entitySel.getOptionSelected()){
             case MODE_EDIT_ACTEUR           :
-                acteurSel.draw();      
-                LvlEle.getActorSelected().ifPresent( (actor) -> actor.displayInfo() );
+                acteurSel.draw();
+                actorEditableOptions.draw();
                 break;    
 
             case MODE_EDIT_TILEGRAPHIQUE    : tileGraphicSel.draw(); break;

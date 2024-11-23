@@ -20,7 +20,7 @@ public class TileGraphic{
         Texture2D txtr = TxtrStrg.getTileGraphicTxtr(decor_id);
         this.rot = rot;
 
-        this.rect = Rect.setRect(ogPos, rot, txtr.getWidth()>>1, txtr.getHeight()>>1);
+        this.rect = Rect.createRectFromRot(ogPos, rot, txtr.getWidth()>>1, txtr.getHeight()>>1);
         /*this.rect = new Rect(ogPos, txtr.getWidth()>>1, txtr.getHeight()>>1);
 
         

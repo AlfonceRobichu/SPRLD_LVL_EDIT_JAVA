@@ -101,7 +101,7 @@ public class TileGraphicArray {
 
         Texture2D txtr = TxtrStrg.getTileGraphicTxtr(GUI.tileGraphicSel.getCurrOptionSelected());
         
-        Rect rect = Rect.setRect(Input.getCursorPosCase(), GUI.getCurrRot(), txtr.getWidth()>>1, txtr.getHeight()>>1);
+        Rect rect = Rect.createRectFromRot(Input.getCursorPosCase(), GUI.getCurrRot(), txtr.getWidth()>>1, txtr.getHeight()>>1);
         
         Iterator<TileGraphic> todel = get_iterator_on_tile_on_RectPosCase(rect);
 

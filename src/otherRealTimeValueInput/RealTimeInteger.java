@@ -4,14 +4,16 @@ import java.util.Optional;
 
 import src.RayClass;
 
-public class RealTimeInteger implements RealTimeValue{
+public class RealTimeInteger extends RealTimeValue{
     private Integer value;
 
-    public RealTimeInteger(){
+    public RealTimeInteger(String name){
+        super(name);
         value = 0;
     }
     
-    public RealTimeInteger(int value){
+    public RealTimeInteger(String name, int value){
+        super(name);
         this.value = value;
     }
 

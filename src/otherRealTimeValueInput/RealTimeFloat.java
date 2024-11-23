@@ -4,14 +4,16 @@ import java.util.Optional;
 
 import src.RayClass;
 
-public class RealTimeFloat implements RealTimeValue{
+public class RealTimeFloat extends RealTimeValue{
     private float value;
 
-    public RealTimeFloat(){
+    public RealTimeFloat(String name){
+        super(name);
         value = 0.0f;
     }
 
-    public RealTimeFloat(float value){
+    public RealTimeFloat(String name, float value){
+        super(name);
         this.value = value;
     }
 

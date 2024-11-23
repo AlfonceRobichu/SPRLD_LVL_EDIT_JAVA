@@ -15,6 +15,7 @@ public class Main {
         new TxtrStrg();
         new GUI();
         new TileGraphicLayer();
+        
         while (!RayClass.rlj.core.WindowShouldClose()){
             Screen.switchWidescreen();
             Logic.upd();

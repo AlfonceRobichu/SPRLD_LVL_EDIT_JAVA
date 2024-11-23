@@ -4,10 +4,11 @@ import java.util.Optional;
 
 import src.RayClass;
 
-public class RealTimeString implements RealTimeValue{
+public class RealTimeString extends RealTimeValue{
     String value;
 
-    public RealTimeString(String value){
+    public RealTimeString(String name, String value){
+        super(name);
         this.value = value;
     }
 

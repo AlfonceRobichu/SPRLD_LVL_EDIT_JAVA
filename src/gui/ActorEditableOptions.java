@@ -3,6 +3,12 @@ package src.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.raylib.java.core.Color;
+
+import src.RayClass;
+import src.otherRealTimeValueInput.Bool;
+import src.otherRealTimeValueInput.BoolToogleValueArea;
+import src.otherRealTimeValueInput.EditableValueArea;
 import src.otherRealTimeValueInput.RealTimeValue;
 import src.otherRealTimeValueInput.RealTimeValueInputArea;
 
@@ -19,26 +25,33 @@ public class ActorEditableOptions extends GUIelement {
     dans des RealTimeValueInputArea lors de leur transfert dans cette classe
      */
 
-    private List<RealTimeValueInputArea> actorOptions;
+    private List<EditableValueArea> actorOptions;
 
 
     public ActorEditableOptions(List<RealTimeValue> actorOptions){
-        int yPos = 500;
+        int yPosOption = 500;
         int yDecalage = 30;
-        super("actor options", 0, yPos);
+        super("actor options", 0, yPosOption);
         this.actorOptions = new ArrayList<>();
         for(RealTimeValue option : actorOptions){
-            yPos += yDecalage;
-            this.actorOptions.add(new RealTimeValueInputArea(0, yPos, option));
+            yPosOption += yDecalage;
+            this.actorOptions.add(addButton(yPosOption, option));
         }
+    }
 
+    private EditableValueArea addButton(int yPosOption, RealTimeValue option){
+        if( option instanceof Bool ){
+            return new BoolToogleValueArea(option.getName(), 0, yPosOption, (Bool)option);
+        }
+        else{
+            return new RealTimeValueInputArea(0, yPosOption, option);
+        }
 
     }
 
-
     @Override
     public void upd() {
-        for(RealTimeValueInputArea option : actorOptions){
+        for(EditableValueArea option : actorOptions){
             option.upd();
         }
     }
@@ -46,7 +59,8 @@ public class ActorEditableOptions extends GUIelement {
 
     @Override
     public void draw() {
-        for(RealTimeValueInputArea option : actorOptions){
+        RayClass.rlj.text.DrawText(name, xPos, yPos - height, textSize, Color.WHITE);
+        for(EditableValueArea option : actorOptions){
             option.draw();
         }
     }

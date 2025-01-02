@@ -1,8 +1,8 @@
 package src.gui;
 
-public interface GUIvisitor {
 
-    void visit(BoolToogleValue boolToogleValue);
+
+public interface GUIvisitor {
 
     void visit(SelectionCascade selectionCascade);
 

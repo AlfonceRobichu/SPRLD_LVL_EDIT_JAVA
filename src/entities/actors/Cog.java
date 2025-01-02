@@ -30,7 +30,9 @@ public class Cog extends Actor {
 
     @Override
     public List<RealTimeValue> getOptions() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOptions'");
+        return List.of(
+            lookRight,
+            rotSpd
+        );
     }
 }

@@ -8,16 +8,14 @@ import java.util.Optional;
 import com.raylib.java.raymath.Vector2;
 import src.Input;
 import src.entities.actors.Actor;
-
+import src.gui.ActorEditableOptions;
 import src.gui.GUI;
 
 public class LvlEle {
    // public static Rect tileRect = new Rect(Input.getCursorPosCase(), 32, 32);
     private static List<Actor> actors = new ArrayList<>();
-    //public static List<TileGraphic> tileGraphics_layer1 = new ArrayList<>();
     private static TileGraphicArray tileGraphics_layer1 = new TileGraphicArray();
     private static TileGraphicArray tileGraphics_layer2 = new TileGraphicArray();
-    //public static List<TileGraphic> tileGraphics_layer2 = new ArrayList<>();
     private static List<TileColl> tileColls = new ArrayList<>();
     
     public static GameCam camEntity = new GameCam();  //camera du jeu sprld
@@ -98,14 +96,14 @@ public class LvlEle {
 
                 actorSelected = getActor();
 
-                
                 if (actorSelected.isEmpty()) {
                     addActor();
                 }
                 else {
                     lvlEditAction = ACTOR_SELECTION;
+                    GUI.actorEditableOptions = new ActorEditableOptions(actorSelected.get().getOptions());
                 }
-            
+                
             break;
 
 
@@ -123,6 +121,7 @@ public class LvlEle {
 
                 else {
                     actorSelected = newActorSelected;       //le curseur est sur un acteur différent
+                    GUI.actorEditableOptions = new ActorEditableOptions(actorSelected.get().getOptions());
                 }
 
             break;

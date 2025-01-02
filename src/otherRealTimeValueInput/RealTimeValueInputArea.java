@@ -5,9 +5,8 @@ import com.raylib.java.shapes.Rectangle;
 
 import src.Input;
 import src.RayClass;
-import src.gui.GUIelement;
 
-public class RealTimeValueInputArea extends GUIelement{
+public class RealTimeValueInputArea extends EditableValueArea{
     private RealTimeValue realTimeValue;
     
     

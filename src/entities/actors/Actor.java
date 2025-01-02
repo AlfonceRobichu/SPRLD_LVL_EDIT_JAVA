@@ -13,12 +13,13 @@ import src.Input;
 import src.RayClass;
 import src.TxtrStrg;
 import src.formes.Rect;
+import src.otherRealTimeValueInput.Bool;
 import src.otherRealTimeValueInput.RealTimeValue;
 
 public abstract class Actor {
     protected int id;
     protected int ogRot;
-    protected boolean lookRight;
+    protected Bool lookRight;
 
     protected static int x = 0;
     protected static int y = 480;
@@ -39,13 +40,13 @@ public abstract class Actor {
     private Actor(float x, float y){
         id = 0;
         ogRot = 0;
-        lookRight = true;
+        lookRight = new Bool("LookRight", true);
     }
 
     public Actor(int id, Vector2 pos, int rot, int width, int height){
         this.id = id;
         ogRot = rot;
-        lookRight = true;
+        lookRight = new Bool("LookRight", true);
         rect = Rect.createRectFromRot(pos, rot, width, height);
     }
 
@@ -69,7 +70,7 @@ public abstract class Actor {
         return ogRot;
     }
 
-    public boolean getLookRight(){
+    public Bool getLookRight(){
         return lookRight;
     }
 
@@ -145,12 +146,11 @@ public abstract class Actor {
     
     
     public String writeToFile(){
-        int lookRightInt = lookRight  ? 1 : 0;
         String s = "";
         s += (int)rect.pos.x + " ";
         s += (int)rect.pos.y + " ";
         s +=      ogRot   + " ";
-        s += lookRightInt + "\n";
+        s += lookRight.toString() + "\n";
         return s; 
     }
 
